@@ -10,7 +10,12 @@ var $hint_passwd = $("#password-hint");
 var $in_conf = $("#confirm_password");
 var $hint_conf = $("#confirm-hint");
 
+var $btn_submit = $("#submit");
 
+
+function canSubmit(){
+  return validPassword() && passwordsMatch();
+}
 
 function confirmEvent(){
   // password matches confirmation?
@@ -21,6 +26,13 @@ function confirmEvent(){
     // else show hint
     $hint_conf.show();
   }
+
+  // check if form can be submitted
+  enableSubmitEvent();
+}
+
+function enableSubmitEvent(){
+  $btn_submit.prop("disabled", !canSubmit());
 }
 
 function passwordEvent(){
