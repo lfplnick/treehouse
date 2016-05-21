@@ -21,7 +21,7 @@ function passwordEvent(){
 
 
 // When event happens on password input
-$in_passwd.change(passwordEvent)
+$in_passwd.focus(passwordEvent)
   .keydown(passwordEvent)
   .keyup(passwordEvent)
   .on("paste", function(){
