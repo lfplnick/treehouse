@@ -7,6 +7,20 @@ $("form span").hide();
 var $in_passwd = $("#password");
 var $hint_passwd = $("#password-hint");
 
+var $in_conf = $("#confirm_password");
+var $hint_conf = $("#confirm-hint");
+
+function confirmEvent(){
+  // password matches confirmation?
+  if ($in_passwd.val() === $in_conf.val()){
+    // hide hint if match
+    $hint_conf.hide();
+  } else {
+    // else show hint
+    $hint_conf.show();
+  }
+}
+
 function passwordEvent(){
   // Is password valid?
   if ($in_passwd.val().length > 8){
@@ -16,6 +30,9 @@ function passwordEvent(){
     // else show hint
     $hint_passwd.show();
   }
+
+  // Make sure password and confirmation match
+  confirmEvent();
 }
 
 
@@ -30,7 +47,9 @@ $in_passwd.focus(passwordEvent)
 
 
 // When event happens on confirmation
-  // password matches confirmation?
-    // hide hint if match
-
-    // else show hint
+$in_conf.focus(confirmEvent)
+  .keydown(confirmEvent)
+  .keyup(confirmEvent)
+  .on("paste", function(){
+    setTimeout(confirmEvent, 100);
+  });
