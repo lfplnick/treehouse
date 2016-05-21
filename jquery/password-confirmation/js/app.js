@@ -75,3 +75,5 @@ $in_conf.focus(confirmEvent)
   .on("paste", function(){
     setTimeout(confirmEvent, 100);
   });
+
+enableSubmitEvent();
