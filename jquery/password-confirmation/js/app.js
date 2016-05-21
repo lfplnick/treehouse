@@ -21,7 +21,12 @@ function passwordEvent(){
 
 
 // When event happens on password input
-$in_passwd.change(passwordEvent).keydown(passwordEvent).keyup(passwordEvent);
+$in_passwd.change(passwordEvent)
+  .keydown(passwordEvent)
+  .keyup(passwordEvent)
+  .on("paste", function(){
+    setTimeout(passwordEvent, 100);
+  });
 
 
 // When event happens on confirmation
