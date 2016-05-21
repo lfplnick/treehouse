@@ -10,9 +10,11 @@ var $hint_passwd = $("#password-hint");
 var $in_conf = $("#confirm_password");
 var $hint_conf = $("#confirm-hint");
 
+
+
 function confirmEvent(){
   // password matches confirmation?
-  if ($in_passwd.val() === $in_conf.val()){
+  if (passwordsMatch()){
     // hide hint if match
     $hint_conf.hide();
   } else {
@@ -23,7 +25,7 @@ function confirmEvent(){
 
 function passwordEvent(){
   // Is password valid?
-  if ($in_passwd.val().length > 8){
+  if (validPassword()){
     // Hide hint if valid
     $hint_passwd.hide();
   } else {
@@ -33,6 +35,14 @@ function passwordEvent(){
 
   // Make sure password and confirmation match
   confirmEvent();
+}
+
+function passwordsMatch(){
+  return $in_passwd.val() === $in_conf.val();
+}
+
+function validPassword(){
+  return $in_passwd.val().length > 8;
 }
 
 
