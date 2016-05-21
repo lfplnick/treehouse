@@ -21,7 +21,7 @@ function passwordEvent(){
 
 
 // When event happens on password input
-$in_passwd.change(passwordEvent).keyup(passwordEvent);
+$in_passwd.change(passwordEvent).keydown(passwordEvent).keyup(passwordEvent);
 
 
 // When event happens on confirmation
