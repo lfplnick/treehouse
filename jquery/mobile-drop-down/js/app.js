@@ -11,6 +11,8 @@ $("#menu a").each(function (){
   var $option = $("<option></option>");
 
   //Deal with selected options depending on current page
+
+
   //option's value is the href
   $option.val($anchor.attr("href"));
 
