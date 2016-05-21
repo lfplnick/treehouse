@@ -4,6 +4,8 @@
 // Hide hints
 $("form span").hide();
 
+var $in_username = $("#username");
+
 var $in_passwd = $("#password");
 var $hint_passwd = $("#password-hint");
 
@@ -13,8 +15,9 @@ var $hint_conf = $("#confirm-hint");
 var $btn_submit = $("#submit");
 
 
+
 function canSubmit(){
-  return validPassword() && passwordsMatch();
+  return validPassword() && passwordsMatch() && usernamePresent();
 }
 
 function confirmEvent(){
@@ -53,11 +56,22 @@ function passwordsMatch(){
   return $in_passwd.val() === $in_conf.val();
 }
 
+function usernamePresent(){
+  return $in_username.val().length > 0;
+}
+
 function validPassword(){
   return $in_passwd.val().length > 8;
 }
 
 
+
+$in_username.focus(enableSubmitEvent)
+.keydown(enableSubmitEvent)
+.keyup(enableSubmitEvent)
+.on("paste", function(){
+  setTimeout(enableSubmitEvent, 100);
+});
 
 // When event happens on password input
 $in_passwd.focus(passwordEvent)
