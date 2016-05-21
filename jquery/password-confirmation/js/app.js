@@ -38,6 +38,15 @@ function enableSubmitEvent(){
   $btn_submit.prop("disabled", !canSubmit());
 }
 
+function onInputInteraction($inputBox, handler){
+  $inputBox.focus(handler)
+    .keydown(handler)
+    .keyup(handler)
+    .on("paste", function(){
+      setTimeout(handler, 100);
+    });
+}
+
 function passwordEvent(){
   // Is password valid?
   if (validPassword()){
@@ -66,28 +75,15 @@ function validPassword(){
 
 
 
-$in_username.focus(enableSubmitEvent)
-.keydown(enableSubmitEvent)
-.keyup(enableSubmitEvent)
-.on("paste", function(){
-  setTimeout(enableSubmitEvent, 100);
-});
+// When event happens on username input
+onInputInteraction($in_username, enableSubmitEvent);
 
 // When event happens on password input
-$in_passwd.focus(passwordEvent)
-  .keydown(passwordEvent)
-  .keyup(passwordEvent)
-  .on("paste", function(){
-    setTimeout(passwordEvent, 100);
-  });
-
+onInputInteraction($in_passwd, passwordEvent);
 
 // When event happens on confirmation
-$in_conf.focus(confirmEvent)
-  .keydown(confirmEvent)
-  .keyup(confirmEvent)
-  .on("paste", function(){
-    setTimeout(confirmEvent, 100);
-  });
+onInputInteraction($in_conf, confirmEvent);
 
+// Check if submit button should be enabled on document load
+//  (i.e., disable submit button on document load)
 enableSubmitEvent();
