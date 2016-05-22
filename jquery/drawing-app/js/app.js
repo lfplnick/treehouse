@@ -1,7 +1,7 @@
 // Problem: No user interaction causes no change to application
 // Solution: When user interacts, cause changes appropriately
 
-var $colors = $(".controls ul li");
+var $color_ul = $(".controls ul");
 var $btn_newColor = $("#revealColorSelect");
 var $menu_colorSelect = $("#colorSelect");
 
@@ -10,27 +10,57 @@ var $slider_green = $("#green");
 var $slider_blue = $("#blue");
 var $sliders = $(".sliders input");
 var $newColor = $("#newColor");
+var $btn_addColor = $("#addNewColor");
 
 
+
+function addNewColor(){
+  var colorId = 'custom-' + $slider_red.val() + '-' + $slider_green.val() + '-' + $slider_blue.val();
+  var $customColor;
+  // append color to control ul
+  if ($("#" + colorId).length){
+    $customColor = $("#" + colorId);
+  } else {
+    $customColor = $('<li class="custom" id="' + colorId + '"></li>')
+    $customColor.css("background", getSliderRGB());
+    $color_ul.append($customColor);
+    registerColors();
+  }
+  // select new color
+  clearSelectedColor();
+  $customColor.addClass("selected");
+}
+
+function clearSelectedColor(){
+  $(".controls ul li").each(function(){
+    $(this).removeClass("selected");
+  });
+}
+
+function getSliderRGB(){
+  return "rgb(" + $slider_red.val() + "," + $slider_green.val() + "," + $slider_blue.val() + ")";
+}
+
+function registerColors(){
+  $(".controls ul li").unbind("click");
+  $(".controls ul li").click(function(){
+    if (!$(this).hasClass("selected")){
+      // deselect sibling elements
+      clearSelectedColor();
+
+      // select clicked element
+      $(this).addClass("selected");
+    }
+  });
+}
 
 function setNewColor(){
   // update new color span
-  var rgb = "rgb(" + $slider_red.val() + "," + $slider_green.val() + "," + $slider_blue.val() + ")";
-  $newColor.css("background", rgb);
+  $newColor.css("background", getSliderRGB());
 }
 
 // when clicking on control list items
-$colors.click(function(){
-  if (!$(this).hasClass("selected")){
-    // deselect sibling elements
-    $colors.each(function(){
-      $(this).removeClass("selected");
-    });
-
-    // select clicked element
-    $(this).addClass("selected");
-  }
-});
+registerColors();
 
 // when new color is clicked
 $btn_newColor.click(function(){
@@ -42,8 +72,7 @@ $btn_newColor.click(function(){
 $sliders.change(setNewColor);
 
 // when add color is clicked
-  // append color to control ul
-  // select new color
+$btn_addColor.click(addNewColor);
 
 // on mouse events on canvas
   // draw lines
