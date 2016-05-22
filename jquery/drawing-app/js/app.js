@@ -32,7 +32,7 @@ function addNewColor(){
 }
 
 function clearSelectedColor(){
-  $(".controls ul li").each(function(){
+  $(".controls li").each(function(){
     $(this).removeClass("selected");
   });
 }
@@ -41,9 +41,12 @@ function getSliderRGB(){
   return "rgb(" + $slider_red.val() + "," + $slider_green.val() + "," + $slider_blue.val() + ")";
 }
 
+/**
+ * Unbinds and then rebinds click listener to color swatches.
+ */
 function registerColors(){
-  $(".controls ul li").unbind("click");
-  $(".controls ul li").click(function(){
+  $(".controls li").unbind("click");
+  $(".controls li").click(function(){
     if (!$(this).hasClass("selected")){
       // deselect sibling elements
       clearSelectedColor();
