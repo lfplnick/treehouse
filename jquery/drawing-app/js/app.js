@@ -27,14 +27,8 @@ function addNewColor(){
     registerColors();
   }
   // select new color
-  clearSelectedColor();
+  $customColor.siblings().removeClass("selected");
   $customColor.addClass("selected");
-}
-
-function clearSelectedColor(){
-  $(".controls li").each(function(){
-    $(this).removeClass("selected");
-  });
 }
 
 function getSliderRGB(){
@@ -49,7 +43,7 @@ function registerColors(){
   $(".controls li").click(function(){
     if (!$(this).hasClass("selected")){
       // deselect sibling elements
-      clearSelectedColor();
+      $(this).siblings().removeClass("selected");
 
       // select clicked element
       $(this).addClass("selected");
