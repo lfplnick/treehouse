@@ -5,7 +5,19 @@ var $colors = $(".controls ul li");
 var $btn_newColor = $("#revealColorSelect");
 var $menu_colorSelect = $("#colorSelect");
 
+var $slider_red = $("#red");
+var $slider_green = $("#green");
+var $slider_blue = $("#blue");
+var $sliders = $(".sliders input");
+var $newColor = $("#newColor");
 
+
+
+function setNewColor(){
+  // update new color span
+  var rgb = "rgb(" + $slider_red.val() + "," + $slider_green.val() + "," + $slider_blue.val() + ")";
+  $newColor.css("background", rgb);
+}
 
 // when clicking on control list items
 $colors.click(function(){
@@ -27,7 +39,7 @@ $btn_newColor.click(function(){
 });
 
 // when color sliders change
-  // update new color span
+$sliders.change(setNewColor);
 
 // when add color is clicked
   // append color to control ul
@@ -35,3 +47,5 @@ $btn_newColor.click(function(){
 
 // on mouse events on canvas
   // draw lines
+
+setNewColor();
