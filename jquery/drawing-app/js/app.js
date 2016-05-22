@@ -24,31 +24,13 @@ function addNewColor(){
     $customColor = $('<li class="custom" id="' + colorId + '"></li>')
     $customColor.css("background", getSliderRGB());
     $color_ul.append($customColor);
-    registerColors();
   }
   // select new color
-  $customColor.siblings().removeClass("selected");
-  $customColor.addClass("selected");
+  $customColor.click();
 }
 
 function getSliderRGB(){
   return "rgb(" + $slider_red.val() + "," + $slider_green.val() + "," + $slider_blue.val() + ")";
-}
-
-/**
- * Unbinds and then rebinds click listener to color swatches.
- */
-function registerColors(){
-  $(".controls li").unbind("click");
-  $(".controls li").click(function(){
-    if (!$(this).hasClass("selected")){
-      // deselect sibling elements
-      $(this).siblings().removeClass("selected");
-
-      // select clicked element
-      $(this).addClass("selected");
-    }
-  });
 }
 
 function setNewColor(){
@@ -57,7 +39,15 @@ function setNewColor(){
 }
 
 // when clicking on control list items
-registerColors();
+$(".controls").on("click", "li", function(){
+  if (!$(this).hasClass("selected")){
+    // deselect sibling elements
+    $(this).siblings().removeClass("selected");
+
+    // select clicked element
+    $(this).addClass("selected");
+  }
+});
 
 // when new color is clicked
 $btn_newColor.click(function(){
