@@ -8,7 +8,7 @@ var $menu_colorSelect = $("#colorSelect");
 var $slider_red = $("#red");
 var $slider_green = $("#green");
 var $slider_blue = $("#blue");
-var $sliders = $(".sliders input");
+var $sliders = $("input[type=range]");
 var $newColor = $("#newColor");
 var $btn_addColor = $("#addNewColor");
 
