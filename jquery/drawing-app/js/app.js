@@ -2,6 +2,8 @@
 // Solution: When user interacts, cause changes appropriately
 
 var $colors = $(".controls ul li");
+var $btn_newColor = $("#revealColorSelect");
+var $menu_colorSelect = $("#colorSelect");
 
 
 
@@ -19,7 +21,10 @@ $colors.click(function(){
 });
 
 // when new color is clicked
+$btn_newColor.click(function(){
   // show or hide color select
+  $menu_colorSelect.toggle();
+});
 
 // when color sliders change
   // update new color span
