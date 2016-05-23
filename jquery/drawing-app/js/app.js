@@ -43,6 +43,22 @@ function setNewColor(){
   $newColorSwatch.css("background-color", "rgb(" + $r.val() + "," + $g.val() + "," + $b.val() + ")");
 }
 
+function setSliderRGB(cssRGB){
+  var re = /rgb\((\d+), *(\d+), *(\d+)\)/
+  if (!re.test(cssRGB)) {
+    return;
+  }
+
+  var match = re.exec(cssRGB);
+  var r = match[1];
+  var g = match[2];
+  var b = match[3];
+
+  $r.val(r);
+  $g.val(g);
+  $b.val(b).change();
+}
+
 // when clicking on control list items
 $(".controls").on("click", "li", function(){
   if (!$(this).hasClass("selected")){
@@ -54,6 +70,9 @@ $(".controls").on("click", "li", function(){
 
     activeColor = $(this).css("background-color");
   }
+}).on("dblclick", "li", function(){
+  setSliderRGB($(this).css("background-color"));
+  $menu_colorSelect.show();
 });
 
 // when new color is clicked
