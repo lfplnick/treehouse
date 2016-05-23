@@ -1,40 +1,46 @@
 // Problem: No user interaction causes no change to application
 // Solution: When user interacts, cause changes appropriately
 
-var $color_ul = $(".controls ul");
+var $colorTray = $(".controls ul");
+
+var $btn_addColor = $("#addNewColor");
 var $btn_newColor = $("#revealColorSelect");
+
 var $menu_colorSelect = $("#colorSelect");
 
+var $newColorSwatch = $("#newColor");
+var $sliders = $("input[type=range]");
 var $r = $("#red");
 var $g = $("#green");
 var $b = $("#blue");
-var $sliders = $("input[type=range]");
-var $newColor = $("#newColor");
-var $btn_addColor = $("#addNewColor");
-var activeColor = $(".controls li.selected").css("background-color");
 
 var $canvas = $("canvas");
 var ctx_canvas = $canvas[0].getContext('2d');
+
+var activeColor = $(".controls li.selected").css("background-color");
 var flg_mouseDown = false;
 
 function addNewColor(){
   var colorId = 'custom-' + $r.val() + '-' + $g.val() + '-' + $b.val();
   var $customColor;
-  // append color to control ul
+  // check if color is already in tray
   if ($("#" + colorId).length){
+    // set $customColor to existing swatch in tray
     $customColor = $("#" + colorId);
   } else {
+    // append new color to color tray
     $customColor = $('<li class="custom" id="' + colorId + '"></li>')
-    $customColor.css("background-color", $newColor.css("background-color"));
-    $color_ul.append($customColor);
+    $customColor.css("background-color", $newColorSwatch.css("background-color"));
+    $colorTray.append($customColor);
   }
-  // select new color
+
+  // select custom color
   $customColor.click();
 }
 
 function setNewColor(){
   // update new color span
-  $newColor.css("background-color", "rgb(" + $r.val() + "," + $g.val() + "," + $b.val() + ")");
+  $newColorSwatch.css("background-color", "rgb(" + $r.val() + "," + $g.val() + "," + $b.val() + ")");
 }
 
 // when clicking on control list items
