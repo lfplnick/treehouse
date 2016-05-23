@@ -11,8 +11,11 @@ var $slider_blue = $("#blue");
 var $sliders = $("input[type=range]");
 var $newColor = $("#newColor");
 var $btn_addColor = $("#addNewColor");
+var activeColor = $(".controls li.selected").css("background-color");
 
-
+var $canvas = $("canvas");
+var ctx_canvas = $canvas[0].getContext('2d');
+var flg_mouseDown = false;
 
 function addNewColor(){
   var colorId = 'custom-' + $slider_red.val() + '-' + $slider_green.val() + '-' + $slider_blue.val();
@@ -46,6 +49,8 @@ $(".controls").on("click", "li", function(){
 
     // select clicked element
     $(this).addClass("selected");
+
+    activeColor = $(this).css("background-color");
   }
 });
 
@@ -62,6 +67,28 @@ $sliders.change(setNewColor);
 $btn_addColor.click(addNewColor);
 
 // on mouse events on canvas
+$canvas.mousedown(function(e){
+  ctx_canvas.beginPath();
+  ctx_canvas.moveTo(e.offsetX, e.offsetY);
+}).mousemove(function(e){
   // draw lines
+  if (flg_mouseDown) {
+    ctx_canvas.lineTo(e.offsetX, e.offsetY);
+    ctx_canvas.strokeStyle = activeColor;
+    ctx_canvas.stroke();
+  }
+}).mouseenter(function(e){
+  if (flg_mouseDown){
+    ctx_canvas.beginPath();
+    ctx_canvas.moveTo(e.offsetX, e.offsetY);
+  }
+});
+
+$(document).mousedown(function(e){
+  e.preventDefault();
+  flg_mouseDown = true;
+}).mouseup(function(){
+  flg_mouseDown = false;
+});
 
 setNewColor();
