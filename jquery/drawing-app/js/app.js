@@ -25,7 +25,7 @@ function addNewColor(){
     $customColor = $("#" + colorId);
   } else {
     $customColor = $('<li class="custom" id="' + colorId + '"></li>')
-    $customColor.css("background", getSliderRGB());
+    $customColor.css("background-color", $newColor.css("background-color"));
     $color_ul.append($customColor);
   }
   // select new color
@@ -38,7 +38,7 @@ function getSliderRGB(){
 
 function setNewColor(){
   // update new color span
-  $newColor.css("background", getSliderRGB());
+  $newColor.css("background-color", getSliderRGB());
 }
 
 // when clicking on control list items
