@@ -5,9 +5,9 @@ var $color_ul = $(".controls ul");
 var $btn_newColor = $("#revealColorSelect");
 var $menu_colorSelect = $("#colorSelect");
 
-var $slider_red = $("#red");
-var $slider_green = $("#green");
-var $slider_blue = $("#blue");
+var $r = $("#red");
+var $g = $("#green");
+var $b = $("#blue");
 var $sliders = $("input[type=range]");
 var $newColor = $("#newColor");
 var $btn_addColor = $("#addNewColor");
@@ -18,7 +18,7 @@ var ctx_canvas = $canvas[0].getContext('2d');
 var flg_mouseDown = false;
 
 function addNewColor(){
-  var colorId = 'custom-' + $slider_red.val() + '-' + $slider_green.val() + '-' + $slider_blue.val();
+  var colorId = 'custom-' + $r.val() + '-' + $g.val() + '-' + $b.val();
   var $customColor;
   // append color to control ul
   if ($("#" + colorId).length){
@@ -32,13 +32,9 @@ function addNewColor(){
   $customColor.click();
 }
 
-function getSliderRGB(){
-  return "rgb(" + $slider_red.val() + "," + $slider_green.val() + "," + $slider_blue.val() + ")";
-}
-
 function setNewColor(){
   // update new color span
-  $newColor.css("background-color", getSliderRGB());
+  $newColor.css("background-color", "rgb(" + $r.val() + "," + $g.val() + "," + $b.val() + ")");
 }
 
 // when clicking on control list items
