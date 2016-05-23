@@ -85,7 +85,6 @@ $canvas.mousedown(function(e){
 });
 
 $(document).mousedown(function(e){
-  e.preventDefault();
   flg_mouseDown = true;
 }).mouseup(function(){
   flg_mouseDown = false;
