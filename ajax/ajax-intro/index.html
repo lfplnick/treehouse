@@ -21,7 +21,7 @@
 
     xhr_bad.onreadystatechange = function(){
       if (xhr_bad.readyState === 4){
-        if (xhr_good.status === 200){
+        if (xhr_bad.status === 200){
           document.getElementById("ajax").innerHTML = xhr_bad.responseText;
         } else {
           alert(xhr_bad.status + ": " + xhr_bad.statusText);
