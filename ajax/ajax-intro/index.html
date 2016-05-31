@@ -6,16 +6,39 @@
   <link rel="stylesheet" href="css/main.css">
   <title>AJAX with JavaScript</title>
   <script>
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-      if (xhr.readyState === 4){
-        document.getElementById("ajax").innerHTML = xhr.responseText;
+    var xhr_good = new XMLHttpRequest();
+    var xhr_bad = new XMLHttpRequest();
+
+    xhr_good.onreadystatechange = function(){
+      if (xhr_good.readyState === 4){
+        if (xhr_good.status === 200){
+          document.getElementById("ajax").innerHTML = xhr_good.responseText;
+        } else {
+          alert(xhr_good.status + ": " + xhr_good.statusText);
+        }
       }
     };
-    xhr.open('GET', 'sidebar.html');
-    function sendAJAX(){
-      xhr.send();
+
+    xhr_bad.onreadystatechange = function(){
+      if (xhr_bad.readyState === 4){
+        if (xhr_bad.status === 200){
+          document.getElementById("ajax").innerHTML = xhr_bad.responseText;
+        } else {
+          alert(xhr_bad.status + ": " + xhr_bad.statusText);
+        }
+      }
+    }
+
+    xhr_good.open('GET', 'sidebar.html');
+    xhr_bad.open('GET', 'sidebaar.html');
+    function sendGoodAJAX(){
+      xhr_good.send();
       document.getElementById('load').style.display = "none";
+    }
+
+    function sendBadAJAX(){
+      xhr_bad.send();
+      document.getElementById('no-load').style.display = "none";
     }
   </script>
 </head>
@@ -26,7 +49,8 @@
         <div class="grid-100">
           <div class="heading">
             <h1>Bring on the AJAX</h1>
-            <button id="load" onclick="sendAJAX()">Bring it!</button>
+            <button id="load" onclick="sendGoodAJAX()">Bring it!</button>
+            <button id="no-load" onclick="sendBadAJAX()">Bring it?</button>
           </div>
           <ul id="ajax">
 
