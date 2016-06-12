@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $.getJSON('../data/employees.json', function (data) {
+  $.getJSON('data/employees.json', function (data) {
     var statusHTML = '<ul class="bulleted">';
     $.each(data,function (index, employee) {
       if (employee.inoffice === true) {
