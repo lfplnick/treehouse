@@ -49,7 +49,7 @@ var updateQuizName = function(s_quizName){
 
 var loadQuiz = function(url){
   $("#answers").html("Loading quiz...");
-  var quiz = new Quiz("js/george-washington-facts.json");
+  var quiz = new Quiz(url);
   return quiz;
 };
 
@@ -57,7 +57,6 @@ var loadQuestion = function(question){
   var questionText   = question.question;
   var answers        = question.answers;
   var i_correct      = question.correctAnswer - 1;
-  var answersHtml    = "";
 
   var $answers = $("#answers");
 
