@@ -1,56 +1,60 @@
-[
-  {
-    "question" : "How tall is George Washington?",
-    "answers" : [
-      "6'8\"",
-      "6'20\"",
-      "12 stories"
-    ],
-    "correctAnswer" : 3
-  },
-  {
-    "question" : "How much does George Washington weigh?",
-    "answers" : [
-      "1 ton",
-      "210 lbs",
-      "1 george-washing ton"
-    ],
-    "correctAnswer" : 1
-  },
-  {
-    "question" : "What is George Washington made of?",
-    "answers" : [
-      "Mostly carbon and water, like everyone else.",
-      "George Washington is an ideal, so therefore made of nothing.",
-      "Radiation."
-    ],
-    "correctAnswer" : 3
-  },
-  {
-    "question" : "True or False: Georege Washington is coming.",
-    "answers" : [
-      "True",
-      "True",
-      "All of the above"
-    ],
-    "correctAnswer" : 3
-  },
-  {
-    "question" : "What is George Washington's pocket full of?",
-    "answers" : [
-      "Stones",
-      "Horses",
-      "Benjamin Franklinz"
-    ],
-    "correctAnswer" : 2
-  },
-  {
-    "question" : "George Washington once killed someone in a duel and never said why. Who was it?",
-    "answers" : [
-      "George Washington Carver",
-      "Abraham Lincoln",
-      "His sensei"
-    ],
-    "correctAnswer" : 3
-  }
-]
+{
+  "title" : "George Washington Quiz",
+  "questions" : 
+  [
+    {
+      "question" : "How tall is George Washington?",
+      "answers" : [
+        "6'8\"",
+        "6'20\"",
+        "12 stories"
+      ],
+      "correctAnswer" : 3
+    },
+    {
+      "question" : "How much does George Washington weigh?",
+      "answers" : [
+        "1 ton",
+        "210 lbs",
+        "1 george-washing ton"
+      ],
+      "correctAnswer" : 1
+    },
+    {
+      "question" : "What is George Washington made of?",
+      "answers" : [
+        "Mostly carbon and water, like everyone else.",
+        "George Washington is an ideal, so therefore made of nothing.",
+        "Radiation."
+      ],
+      "correctAnswer" : 3
+    },
+    {
+      "question" : "True or False: Georege Washington is coming.",
+      "answers" : [
+        "True",
+        "True",
+        "All of the above"
+      ],
+      "correctAnswer" : 3
+    },
+    {
+      "question" : "What is George Washington's pocket full of?",
+      "answers" : [
+        "Stones",
+        "Horses",
+        "Benjamin Franklinz"
+      ],
+      "correctAnswer" : 2
+    },
+    {
+      "question" : "George Washington once killed someone in a duel and never said why. Who was it?",
+      "answers" : [
+        "George Washington Carver",
+        "Abraham Lincoln",
+        "His sensei"
+      ],
+      "correctAnswer" : 3
+    }
+  ]
+}
