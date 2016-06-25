@@ -32,5 +32,19 @@ Quiz.prototype = {
     this.q_total = this.questions.length;
 
     document.body.dispatchEvent(this.readyEvent);
+  },
+
+  currentQuestion: function(){
+    return this.questions[this.q_current];
+  },
+
+  nextQuestion: function(){
+    this.q_current++;
+    if (this.q_current < this.q_total) {
+      return true;
+    } else {
+      this.q_current = (this.q_total - 1);
+      return false;
+    }
   }
 };

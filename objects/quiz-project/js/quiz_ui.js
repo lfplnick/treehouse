@@ -23,12 +23,11 @@ var loadFailed = function(){
 };
 
 var loadNextQuestion = function(){
-  quiz.q_current++;
-  if (quiz.q_current === quiz.q_total) {
-    finishQuiz();
+  if (quiz.nextQuestion()) {
+    loadQuestion();
+    updateProgress();
   } else {
-    loadQuestion(quiz.questions[quiz.q_current]);
-    updateProgress(quiz.q_current + 1, quiz.q_total);
+    finishQuiz();
   }
 };
 
@@ -50,7 +49,7 @@ var loadQuiz = function(url){
 };
 
 var loadQuestion = function(){
-  var question       = quiz.questions[quiz.q_current];
+  var question       = quiz.currentQuestion();
   var questionText   = question.question;
   var answers        = question.answers;
   var i_correct      = question.correctAnswer - 1;
