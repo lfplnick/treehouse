@@ -1,3 +1,5 @@
+var quiz;
+
 var correctSelected = function(){
   quiz.correct++;
   loadNextQuestion();
@@ -14,6 +16,10 @@ var wrongSelected = function(){
   quiz.incorrect++;
   loadNextQuestion();
   console.log("wrong!!!");
+};
+
+var loadFailed = function(){
+  $("#question").html("Quiz failed to load! Sorry about that.");
 };
 
 var loadNextQuestion = function(){
@@ -48,9 +54,10 @@ var updateQuizName = function(s_quizName){
 };
 
 var loadQuiz = function(url){
-  $("#answers").html("Loading quiz...");
-  var quiz = new Quiz(url);
-  return quiz;
+  $("#quiz-title").html("Loading quiz...");
+  document.body.addEventListener("quiz-ready", startQuiz);
+  document.body.addEventListener("quiz-error", loadFailed);
+  quiz = new Quiz(url);
 };
 
 var loadQuestion = function(question){
@@ -76,5 +83,15 @@ var loadQuestion = function(question){
 
     $answers.append($answer);
     $answers.append($answerBtn);
+  }
+};
+
+var startQuiz = function(e){
+  if (quiz instanceof Quiz){
+    updateQuizName(quiz.title);
+    updateProgress(quiz.q_current + 1, quiz.q_total);
+    loadQuestion(quiz.questions[quiz.q_current]);
+  } else {
+    loadFailed();
   }
 };

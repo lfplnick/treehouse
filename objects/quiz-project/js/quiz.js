@@ -6,6 +6,9 @@ function Quiz (url_quiz) {
   this.q_total   = 0;
   this.q_current = 0;
 
+  this.readyEvent = new CustomEvent('quiz-ready', this);
+  this.errorEvent = new CustomEvent('quiz-error', this);
+
 
   var thisQuiz = this;
   $.ajax({
@@ -13,6 +16,8 @@ function Quiz (url_quiz) {
     "dataType" : "json",
   }).success(function(quiz){
     thisQuiz.initQuiz(quiz);
+  }).error(function(){
+    document.body.dispatchEvent(thisQuiz.errorEvent);
   });
 }
 
@@ -26,8 +31,6 @@ Quiz.prototype = {
 
     this.q_total = this.questions.length;
 
-    updateQuizName(this.title);
-    updateProgress(this.q_current + 1, this.q_total);
-    loadQuestion(this.questions[0]);
+    document.body.dispatchEvent(this.readyEvent);
   }
 };
