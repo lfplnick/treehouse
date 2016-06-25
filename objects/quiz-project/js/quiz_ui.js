@@ -3,7 +3,6 @@ var quiz;
 var correctSelected = function(){
   quiz.correct++;
   loadNextQuestion();
-  console.log("correct!!!");
 };
 
 var finishQuiz = function(){
@@ -15,7 +14,6 @@ var finishQuiz = function(){
 var wrongSelected = function(){
   quiz.incorrect++;
   loadNextQuestion();
-  console.log("wrong!!!");
 };
 
 var loadFailed = function(){
